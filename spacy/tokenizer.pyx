@@ -601,7 +601,7 @@ cdef class Tokenizer:
 
         DOCS: https://spacy.io/api/tokenizer#add_special_case
         """
-        self._validate_special_case(string, substrings)
+        # self._validate_special_case(string, substrings)
         substrings = list(substrings)
         cached = <_Cached*>self.mem.alloc(1, sizeof(_Cached))
         cached.length = len(substrings)
