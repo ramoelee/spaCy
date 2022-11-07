@@ -584,12 +584,12 @@ cdef class Tokenizer:
         """
         attrs = [intify_attrs(spec, _do_deprecated=True) for spec in substrings]
         orth = "".join([spec[ORTH] for spec in attrs])
-        if chunk != orth:
-            raise ValueError(Errors.E997.format(chunk=chunk, orth=orth, token_attrs=substrings))
-        for substring in attrs:
-            for attr in substring:
-                if attr not in (ORTH, NORM):
-                    raise ValueError(Errors.E1005.format(attr=self.vocab.strings[attr], chunk=chunk))
+#         if chunk != orth:
+#             raise ValueError(Errors.E997.format(chunk=chunk, orth=orth, token_attrs=substrings))
+#         for substring in attrs:
+#             for attr in substring:
+#                 if attr not in (ORTH, NORM):
+#                     raise ValueError(Errors.E1005.format(attr=self.vocab.strings[attr], chunk=chunk))
 
     def add_special_case(self, str string, substrings):
         """Add a special-case tokenization rule.
@@ -601,7 +601,7 @@ cdef class Tokenizer:
 
         DOCS: https://spacy.io/api/tokenizer#add_special_case
         """
-        # self._validate_special_case(string, substrings)
+        self._validate_special_case(string, substrings)
         substrings = list(substrings)
         cached = <_Cached*>self.mem.alloc(1, sizeof(_Cached))
         cached.length = len(substrings)
